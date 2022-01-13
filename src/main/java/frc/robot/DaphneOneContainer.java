@@ -119,7 +119,7 @@ public class DaphneOneContainer {
     
     buttonA.whenPressed(new ToggleIntake(intake));
     buttonB.whileHeld(new IntakeSpeed(intake,-1));
-    buttonX.whileHeld(new IntakeSpeed(intake,.5));
+    // buttonX.whileHeld(new IntakeSpeed(intake,.5));
     buttonY.whileHeld(new ConveyorSpeed(conveyor, -.8));
     buttonLB.whileHeld(new ConveyorSpeed( conveyor,.5));
     buttonBack.whenPressed(new ZeroNavX(swerveDriveSubsystem));

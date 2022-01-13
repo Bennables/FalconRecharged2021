@@ -134,19 +134,19 @@ public class DaphneTwoContainer {
     //buttonY.whenPressed(new ToggleClimberGearLock(climberT));
 
 
-    leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
+    // leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
     back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //buttonX.whileHeld(new ConveyorSpeed( conveyorT, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED)); // change seconds later
-    buttonX.whenPressed(new IntakeSpeed(intake, 1.0).withTimeout(2));
+    // buttonX.whenPressed(new IntakeSpeed(intake, 1.0).withTimeout(2));
     rightBumper.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
-    start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
+    // start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
     buttonA.whenPressed(new ToggleConveyorIntake(intake, -1.0));
     //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
     int inputRPM = (int) SmartDashboard.getNumber("Input Shooter RPM", 0);
-    buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
+    // buttonB.whenPressed(new AutoShoot(conveyorT, shooterMotor, true, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));
     //buttonB.whenPressed(new ToggleIntake(intake));
    // buttonB.whenPressed(new InstantCommand((DaphneTwoConstants.GREEN_RPM) -> toggleShooter() //looking for something that doesn't take parameters  
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
@@ -214,7 +214,7 @@ public class DaphneTwoContainer {
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
     buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
-    buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
+    // buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
 
@@ -231,8 +231,8 @@ public class DaphneTwoContainer {
 
     //start.whileHeld(new ReadLimelight(limeL));
     //start.whenPressed(new RotateWithLimelight(limeL, swerveDriveSubsystem));
-    //start.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
-    //leftBumper.whenPressed(new TurnToAngleProfiled(45, swerveDriveSubsystem));
+    buttonX.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
+    // leftBumper.whenPressed(new gle(45, swerveDriveSubsystem));
     //rightBumper.whenPressed(new TurnToAngleProfiled(-45, swerveDriveSubsystem));
     //start.whenPressed(new AlignToTargetLimelight( swerveDriveSubsystem, limeL));
     //start.whenPressed(new AutoPath1(swerveDriveSubsystem));

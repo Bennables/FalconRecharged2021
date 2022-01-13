@@ -50,6 +50,10 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference
     getController().setTolerance(Constants.TURN_TOLERANCE, 10);
+
+    //IS THERE WHERE I PRINT OUT TO TEST??? - Alec
+    ll.printLoc();
+    // System.out.println(ll.getX() + "is the x value, and the y or distnace(?) value is " + ll.getDistance());
   }
 
 

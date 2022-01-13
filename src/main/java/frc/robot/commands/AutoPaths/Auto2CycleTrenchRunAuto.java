@@ -50,14 +50,14 @@ public class Auto2CycleTrenchRunAuto extends SequentialCommandGroup {
     TrajectoryMaker trajTrenchForward = TrajectoryHelper.createTrenchForward();
     TrajectoryMaker trajTrenchTarget = TrajectoryHelper.createTrenchToTargetDiagonal();
     addCommands(
-      new Autonomous(swerveDriveSubsystem, traj.getTrajectory(), traj.getAngle()),
-      new AutoShoot(conveyorTalon, shooter,false),
-      new Autonomous(swerveDriveSubsystem, trajTrench.getTrajectory(), trajTrench.getAngle()),
-      new AutoRotate(swerveDriveSubsystem,175),
-      new Autonomous(swerveDriveSubsystem, trajTrenchForward.getTrajectory(), trajTrenchForward.getAngle()).raceWith(new IntakeSpeed(intake, -1)),
-      new AutoRotate(swerveDriveSubsystem,175),
-      new Autonomous(swerveDriveSubsystem, trajTrenchTarget.getTrajectory(), trajTrenchTarget.getAngle()),
-      new AutoShoot(conveyorTalon,shooter,true)
+      // new Autonomous(swerveDriveSubsystem, traj.getTrajectory(), traj.getAngle()),
+      // new AutoShoot(conveyorTalon, shooter,false),
+      // new Autonomous(swerveDriveSubsystem, trajTrench.getTrajectory(), trajTrench.getAngle()),
+      // new AutoRotate(swerveDriveSubsystem,175),
+      // new Autonomous(swerveDriveSubsystem, trajTrenchForward.getTrajectory(), trajTrenchForward.getAngle()).raceWith(new IntakeSpeed(intake, -1)),
+      // new AutoRotate(swerveDriveSubsystem,175),
+      // new Autonomous(swerveDriveSubsystem, trajTrenchTarget.getTrajectory(), trajTrenchTarget.getAngle()),
+      // new AutoShoot(conveyorTalon,shooter,true)
     );
   }
 }
