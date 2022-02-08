@@ -9,6 +9,12 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class TrajectoryHelper {
+
+    public static double[][] moveToFender = {
+        {0,0},
+        {35, 0}
+    };
+
     //for one cycle auto
     public static double[][] lineToTargetZone = {
         {0, 0},
@@ -285,6 +291,7 @@ public static double[][] testStep= {
         return points;
     }
 
+
     public static TrajectoryMaker createTrajectory(double [][] inputPoints, double scale, double startOrientation, double endOrientation, boolean isReversed) // for bounce
     {
         ArrayList<Translation2d> points = translateAndScale(inputPoints, scale);  // make .2 for Hajel's garage.  Turns the 30 foot field to 6 feet
@@ -324,6 +331,10 @@ public static double[][] testStep= {
     // public static TrajectoryMaker createTrenchRunPickUp() {
     //     return createTrajectory(trenchRunPickUp, GLOBAL_SCALE, 0, 0, true);
     // }
+
+    public static TrajectoryMaker createMoveToFender() {
+        return createTrajectory(moveToFender, GLOBAL_SCALE, 0, 0, false);
+    }
 
     public static TrajectoryMaker createTargetZoneToLine() {
         return createTrajectory(targetZoneToLine, GLOBAL_SCALE, 0, Math.PI - 0.5, true);

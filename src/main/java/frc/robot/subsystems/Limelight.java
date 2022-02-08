@@ -55,6 +55,7 @@ public class Limelight extends SubsystemBase  {
     shooterY = shY.getDouble(0.0);
     intakeMode = new SendableChooser<Integer>();
     intakeMode.setDefaultOption("Vison Mode", 0);
+    
     intakeMode.addOption("Cam Mode", 1);
     SmartDashboard.putData(intakeMode);
     xErr = Double.MIN_VALUE;

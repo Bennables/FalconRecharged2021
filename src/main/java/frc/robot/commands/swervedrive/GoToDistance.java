@@ -3,6 +3,7 @@ package frc.robot.commands.swervedrive;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
+import frc.robot.Constants;
 import frc.robot.subsystems.Drive.*;
 
 
@@ -20,10 +21,10 @@ public class GoToDistance extends ProfiledPIDCommand {
 
     public GoToDistance(double distance, SwerveDriveSubsystem drive) {
     super(
-        new ProfiledPIDController(0.04,0.0, 0.00237, //need to tune this better
-            new TrapezoidProfile.Constraints(30,60)),  
+      new ProfiledPIDController(Constants.DISTANCE_PID_P,Constants.DISTANCE_PID_I, Constants.DISTANCE_PID_D, //need to tune this better
+      new TrapezoidProfile.Constraints(Constants.MAX_DISTANCE_VELOCITY,Constants.MAX_DISTANCE_ACCELERATION)),  
         // Close loop on distance
-        drive::getInches ,
+        drive::negGetInches , //negGetInches makes it move forward and getInches goes backward
         // Set reference to target
         distance,  
         // Pipe output to drive robot

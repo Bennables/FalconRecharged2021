@@ -18,14 +18,14 @@ import frc.robot.DaphneTwoConstants;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
 public class LimelightPortal extends SubsystemBase {
+
+  private NetworkTable shooterLL;
   /**
    * Creates a new LimelightPortal.
    */
   public LimelightPortal() {
-    // NetworkTable aimLL = NetworkTableInstance.getDefault().getTable("10.55.7.21");
-
-
-
+     shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); 
+     shooterLL.getEntry("stream").setNumber(1);
   }
 
   @Override
@@ -33,7 +33,7 @@ public class LimelightPortal extends SubsystemBase {
     // This method will be called once per scheduler run
 
 
-    NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
+   // 10.55.7.11
     NetworkTableEntry shX = shooterLL.getEntry("tx");
     NetworkTableEntry shY = shooterLL.getEntry("ty");
     NetworkTableEntry shA = shooterLL.getEntry("ta");
@@ -66,6 +66,16 @@ public class LimelightPortal extends SubsystemBase {
     //double a = shA.getDouble(0.0);
 
     return x;
+  }
+
+  public boolean foundTarget()
+  {
+    NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter");
+    NetworkTableEntry shV = shooterLL.getEntry("tv");
+
+    int v = (int)shV.getDouble(0.0);
+
+    return v > 0;
   }
 
   public double getDistance()

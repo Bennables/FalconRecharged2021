@@ -9,6 +9,8 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.playingwithfusion.TimeOfFlight;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -32,21 +34,22 @@ import frc.robot.commands.AutoPaths.OneCycleAutoLeft;
 import frc.robot.commands.AutoPaths.OneCycleAutoLeftStop;
 import frc.robot.commands.AutoPaths.OneCycleAutoStop;
 import frc.robot.commands.AutoPaths.SensorTest;
-import frc.robot.commands.climber.*;
+// import frc.robot.commands.climber.*;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
 import frc.robot.commands.conveyor.*;
 import frc.robot.commands.intake.*;
 import frc.robot.commands.shooter.AutoShoot;
 import frc.robot.commands.shooter.SetShooterSpeed;
 import frc.robot.commands.swervedrive.*;
-import frc.robot.subsystems.Climber.ClimberTalonLower;
-import frc.robot.subsystems.Climber.ClimberTalonUpper;
+// import frc.robot.subsystems.Climber.ClimberTalonLower;
+// import frc.robot.subsystems.Climber.ClimberTalonUpper;
 import frc.robot.subsystems.ConveyorTalon;
 import frc.robot.subsystems.Drive.SwerveDriveModule;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.LimelightPortal;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.TimeOfFlightRange;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 import frc.robot.utility.TrajectoryMaker;
 import frc.robot.utility.TriggerAxisButton;
@@ -73,9 +76,10 @@ public class DaphneTwoContainer {
   private final Shooter shooterMotor;
   private final Compressor compressor;
   //private final ClimberTalon climberT;
-  private final ClimberTalonUpper climberTUpper;
-  private final ClimberTalonLower climberTLower;
+  // private final ClimberTalonUpper climberTUpper;
+  // private final ClimberTalonLower climberTLower;
   private final LimelightPortal limeL;
+  private final TimeOfFlightRange sensor;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -83,9 +87,9 @@ public class DaphneTwoContainer {
   public DaphneTwoContainer() {
     // create all the subsystems needed in this robot
     SwerveDriveModule m0 = new SwerveDriveModule(0, new TalonSRX(DaphneTwoConstants.ANGLE2_TALON), new TalonFX(DaphneTwoConstants.DRIVE2_TALON), 128); //real:390 practice: 212
-    SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 340); //real:293 practice: 59
-    SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 96); //real:298 practice: 56
-    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 164); //real: 355 practice: 190 // ````````````````````````````````````````````````````````````````````````````````````````````````````````357
+    SwerveDriveModule m1 = new SwerveDriveModule(1, new TalonSRX(DaphneTwoConstants.ANGLE1_TALON), new TalonFX(DaphneTwoConstants.DRIVE1_TALON), 344); //real:293 practice: 59
+    SwerveDriveModule m2 = new SwerveDriveModule(2, new TalonSRX(DaphneTwoConstants.ANGLE3_TALON), new TalonFX(DaphneTwoConstants.DRIVE3_TALON), 1); //real:298 practice: 56
+    SwerveDriveModule m3 = new SwerveDriveModule(3, new TalonSRX(DaphneTwoConstants.ANGLE4_TALON), new TalonFX(DaphneTwoConstants.DRIVE4_TALON), 180); //real: 355 practice: 190 // ````````````````````````````````````````````````````````````````````````````````````````````````````````357
 
     swerveDriveSubsystem = new SwerveDriveSubsystem(m0, m1, m2, m3);
     swerveDriveSubsystem.zeroGyro();
@@ -97,12 +101,14 @@ public class DaphneTwoContainer {
     shooterMotor = new Shooter();
     compressor = null; //new Compressor();
     //climberT = new ClimberTalon();
-    climberTUpper = new ClimberTalonUpper();
-    climberTLower = new ClimberTalonLower();
+    // climberTUpper = new ClimberTalonUpper();
+    // climberTLower = new ClimberTalonLower();
     limeL = new LimelightPortal();
+    sensor = new TimeOfFlightRange(); //2 is the canID
+
 
     // create the input controllers
-    mXboxController = new XboxController(0);
+    mXboxController = new XboxController(2);
     mXboxController2 = new XboxController(1);
 
     // setup any default commands
@@ -128,10 +134,26 @@ public class DaphneTwoContainer {
     JoystickButton stickLeft = new JoystickButton(mXboxController, XboxController.Button.kStickLeft.value);
     JoystickButton stickRight = new JoystickButton(mXboxController, XboxController.Button.kStickRight.value);
 
+    // buttonX.whenPressed(new AlignToFender(limeL, swerveDriveSubsystem));
+    // buttonX.whenPressed(new GoToDistance(swerveDriveSubsystem.getInches() + 12, swerveDriveSubsystem));
+    // buttonX.whenPressed(new TurnToZeroLimelight(0, swerveDriveSubsystem, limeL));
     
-
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    buttonY.whileHeld(new ZeroNavX(swerveDriveSubsystem));
+    // buttonY.whenPressed(new RotateAndDistanceLimelight(120, swerveDriveSubsystem, limeL));
+    //buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonY.whenPressed(new ToggleClimberGearLock(climberT));
+
+    buttonA.whenPressed(new GoToDistanceTimeOfFlight(0, swerveDriveSubsystem, sensor));
+    // buttonA.whenPressed(new GetInchesTimeOfFlight());
+    // buttonA.whenPressed(new GoToDistance(swerveDZriveSubsystem.negGetInches()+2, swerveDriveSubsystem)); //really bad idea to do large neg #'s    
+    // buttonA.whenPressed(new GoToDistance(swerveDriveSubsystem.getInches()-10, swerveDriveSubsystem)); //really bad idea to do large neg #'s
+    // buttonA.whenPressed(new AlignAndMoveToLimelight(70, swerveDriveSubsystem, limeL)); 
+    
+    buttonB.whenPressed(new GetInchesTimeOfFlight());
+    // buttonB.whenPressed(new PrintGetInches(swerveDriveSubsystem)); 
+    // buttonB.whenPressed(new PrintDistanceLimelight(limeL)); 
+
+    
 
 
     // leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
@@ -141,7 +163,7 @@ public class DaphneTwoContainer {
     rightBumper.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
     // start.whenPressed(new InstantCommand(() -> {shooterMotor.setMotorRPM(0);}, shooterMotor)); 
 
-    buttonA.whenPressed(new ToggleConveyorIntake(intake, -1.0));
+    // buttonA.whenPressed(new ToggleConveyorIntake(intake, -1.0));
     //buttonY.whenPressed(new ToggleConveyorIntake(intake, -1));
     //toggle shooter
     //buttonB.whenPressed(new InstantCommand(() -> shooterMotor.toggleShooter(-DaphneTwoConstants.GREEN_RPM), shooterMotor)); //change 1000 rpm later
@@ -152,8 +174,8 @@ public class DaphneTwoContainer {
     //buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //buttonA.whenPressed(new MoveClimberArm(climberT, 1000));
     
-    double startingTicksUpperArm = climberTUpper.getUpperArm().getSelectedSensorPosition();
-    double startingTicksLowerArm = climberTLower.getLowerArm().getSelectedSensorPosition();
+    // double startingTicksUpperArm = climberTUpper.getUpperArm().getSelectedSensorPosition();
+    // double startingTicksLowerArm = climberTLower.getLowerArm().getSelectedSensorPosition();
 
     JoystickButton buttonA2 = new JoystickButton(mXboxController2, XboxController.Button.kA.value);
     JoystickButton buttonB2 = new JoystickButton(mXboxController2, XboxController.Button.kB.value);
@@ -164,20 +186,20 @@ public class DaphneTwoContainer {
     TriggerAxisButton LeftTrigger2 = new TriggerAxisButton(mXboxController2, XboxController.Axis.kLeftTrigger.value);
     TriggerAxisButton RightTrigger2 = new TriggerAxisButton(mXboxController2, XboxController.Axis.kRightTrigger.value);
 
-    RightTrigger2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, -1));
-    LeftTrigger2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, -1));
+    // RightTrigger2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, -1));
+    // LeftTrigger2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, -1));
 
-    rightBumper2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, 1));
-    leftBumper2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, 1));
+    // rightBumper2.whenPressed(new MoveUpperArmByInchesRelative(climberTUpper, 1));
+    // leftBumper2.whenPressed(new MoveLowerArmByInchesRelative(climberTLower, 1));
     
     //buttonB2.whenPressed(new MoveUpperArmByInches(climberTUpper, 1, startingTicksLowerArm));
     //buttonB2.whenPressed(new SetShooterSpeed(shooterMotor, 1000).withTimeout(3));
     //buttonB2.whenPressed(new OneCycleAuto(swerveDriveSubsystem, conveyorT, intake, shooterMotor, 5000, 0));
    
-    buttonY2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonX2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
-    buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); //upper arm should be towards center
-    buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); // lower arm should be towards center
+    // buttonY2.whenPressed(new AutoClimbDeploy(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    // buttonX2.whenPressed(new SemiAutoPullUp(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm));
+    // buttonB2.whenPressed(new ClimbSkewRight(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); //upper arm should be towards center
+    // buttonA2.whenPressed(new ClimbSkewLeft(climberTUpper, climberTLower, startingTicksUpperArm, startingTicksLowerArm)); // lower arm should be towards center
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be
@@ -213,9 +235,9 @@ public class DaphneTwoContainer {
     /*
     The following is an example of an inline command.  No need to create a CommandBase Subclass for simple commands
     */
-    buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
+    // buttonA.whenPressed(new InstantCommand(intake::toggleIntakeSolenoidMode, intake));
     // buttonX.whenPressed(new ToggleFieldOrientedCommand(swerveDriveSubsystem));
-    buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
+    // buttonY.whileHeld(new ConveyorSpeed( conveyorT, .5)); //while Y is held down conveyor runs
     //buttonB.whileHeld(new IntakeSpeed(intake,-.5)); //while b is held down intake runs
 
     // Command unoCycle = new OneCycleAuto(swerveDriveSubsystem, shooterMotor);
@@ -223,7 +245,7 @@ public class DaphneTwoContainer {
     //buttonB.whenPressed(new Autonomous(swerveDriveSubsystem, path2Meters.getTrajectory(), path2Meters.getAngle(), true));
     //leftBumper.whileHeld(new ConveyorSpeed( conveyorT, -.7));
     //leftBumper.whileHeld(new SetShooterSpeed(shooterMotor, 6000));
-    back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
+    // back.whileHeld(new ZeroNavX(swerveDriveSubsystem));
     //buttonX.whileHeld(new ConveyorSpeed( conveyorT, -.5));
    // buttonX.whenPressed(new ToggleClimberGearLock(climberT)); 
     //rightBumper.whenPressed(new AutoShoot(conveyorT, shooterMotor, false, DaphneTwoConstants.GREEN_RPM, DaphneTwoConstants.CONVEYOR_UNLOADS_SPEED));

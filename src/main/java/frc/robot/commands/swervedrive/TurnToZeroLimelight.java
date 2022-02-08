@@ -7,6 +7,8 @@
 package frc.robot.commands.swervedrive;
 
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import frc.robot.subsystems.LimelightPortal;
@@ -44,16 +46,16 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
         drive);
 
     // Set the controller to be continuous (because it is an angle controller)
-    getController().enableContinuousInput(-180, 180);
+    getController().enableContinuousInput(-180, 180); 
     swerveDriveSubsystem = drive;
     limeL = ll;
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference
     getController().setTolerance(Constants.TURN_TOLERANCE, 10);
 
-    //IS THERE WHERE I PRINT OUT TO TEST??? - Alec
-    ll.printLoc();
-    // System.out.println(ll.getX() + "is the x value, and the y or distnace(?) value is " + ll.getDistance());
+    // ll.printLoc();
+    // Shuffleboard.getTab("limelight-test").add("test");
+    System.out.println("***********" + ll.getDistance() + "**********");
   }
 
 
@@ -61,7 +63,7 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
   public void execute() {
     // TODO Auto-generated method stub
     super.execute();
-    System.out.println("robot angle: " 
+    System.out.println("****************robot angle: " 
         + swerveDriveSubsystem.getGyroAngle2()
         + "limelight offset"
         + limeL.getX());

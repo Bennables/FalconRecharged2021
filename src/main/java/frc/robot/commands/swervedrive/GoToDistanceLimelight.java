@@ -28,6 +28,8 @@ public class GoToDistanceLimelight extends ProfiledPIDCommand {
      *
      * @param targetAngleDegrees The angle to turn to
      * @param drive              The drive subsystem to use
+     * 
+     * default distanceInches should be how big the bumper is
      */
     public GoToDistanceLimelight(double distanceInches, SwerveDriveSubsystem drive, LimelightPortal ll) {
     super(
@@ -50,6 +52,7 @@ public class GoToDistanceLimelight extends ProfiledPIDCommand {
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference
     getController().setTolerance(Constants.DISTANCE_TOLERANCE, 10);
+    System.out.println("***********" + distanceInches + "**********");
   }
 
 

@@ -6,6 +6,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.subsystems.LimelightPortal;
 
 public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwise - is counter clockwise test commit 2 electric bugaloo
 	private static final double WHEELBASE = 22.5; 
@@ -167,6 +168,11 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		return mSwerveModules[0].getInches();
 	}
 
+	public double negGetInches()
+	{
+		return /*Math.abs(*/mSwerveModules[0].getInches();
+	}
+
 	public void driveForwardDistance(double targetPos, double angle){ // inches & degrees
 		double angleError = ((angle - mNavX.getYaw()) / 180)*10;
 
@@ -228,6 +234,9 @@ public class SwerveDriveSubsystem extends HolonomicDrivetrain { // + is clockwis
 		SmartDashboard.putNumber("Mod 2 Angle", mSwerveModules[2].getCurrentAngle());
 		SmartDashboard.putNumber("Mod 3 Angle", mSwerveModules[3].getCurrentAngle());
 		SmartDashboard.putNumber("Encoder Ticks in Inches: ", mSwerveModules[3].getInches());
+	}
+
+	public void PrintDistanceLimelight(LimelightPortal limelight) {
 	}
 }
 

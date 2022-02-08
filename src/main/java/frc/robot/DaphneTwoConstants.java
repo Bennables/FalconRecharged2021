@@ -27,9 +27,9 @@ public final class DaphneTwoConstants {
     public static final int DRIVE3_TALON = 6;
     public static final int DRIVE4_TALON = 4;
 
-    public static final double LL_HEIGHT = 23; //inches
-    public static final double LL_MOUNT_ANGLE = 50; //degrees
-    public static final double VISION_TARGET_HEIGHT = 90;  //inches
+    public static final double LL_HEIGHT = 29.5; //inches
+    public static final double LL_MOUNT_ANGLE = 45; //degrees
+    public static final double VISION_TARGET_HEIGHT = 104;  //inches
 
     public static final int GREEN_RPM = 5500; //speed to shoot from right in front
     public static final int YELLOW_RPM = 4000; //speed to shoot from yellow zone
@@ -38,5 +38,19 @@ public final class DaphneTwoConstants {
     public static final double CLIMBERTALON_UPPER_LIMITUP = CLIMBERTALONS_ONE_INCH_IN_TICKS * 18; //inches
     public static final double CLIMBERTALON_LOWER_LIMITUP = CLIMBERTALONS_ONE_INCH_IN_TICKS * 18.75;
     public static final double CLIMBERTALON_TICKS_ACCURACY = 1000;
+
+    public static final int STAGE_1_DISTANCE = 50;
+    public static final int STAGE_2_DISTANCE = 20;
+    public static final int STAGE_3_DISTANCE = 10;
+    public static final int STAGE_4_DISTANCE = 5;
+    
+    public static final double STAGE_1_SPEED = 0.8;
+    public static final double STAGE_2_SPEED = 0.5;
+    public static final double STAGE_3_SPEED = 0.3;
+    public static final double STAGE_4_SPEED = 0.1;
+    public static final double STAGE_5_SPEED = 0.05;
+
+    public static final int TURN_CAP = 30;
+
 
 }
