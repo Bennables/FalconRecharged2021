@@ -25,7 +25,8 @@ public class LimelightPortal extends SubsystemBase {
    */
   public LimelightPortal() {
      shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); 
-     shooterLL.getEntry("stream").setNumber(1);
+     shooterLL.getEntry("stream").setNumber(0);
+
   }
 
   @Override
@@ -93,5 +94,10 @@ public class LimelightPortal extends SubsystemBase {
                 Math.tan(Math.toRadians(DaphneTwoConstants.LL_MOUNT_ANGLE)+Math.toRadians(y));
 
     return distance;
+  }
+
+  public void setCamera()
+  {
+    shooterLL.getEntry("stream").setNumber(1);
   }
 }

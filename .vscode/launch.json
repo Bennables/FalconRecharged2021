@@ -6,6 +6,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Test",
+      "request": "launch",
+      "mainClass": "frc.robot.subsystems.Color.Test",
+      "projectName": "Alec"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - ShuffleboardTest",
+      "request": "launch",
+      "mainClass": "frc.robot.commands.swervedrive.ShuffleboardTest",
+      "projectName": "Alec"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - DeleteLater",
       "request": "launch",
       "mainClass": "frc.robot.DeleteLater",

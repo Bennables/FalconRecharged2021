@@ -117,10 +117,10 @@ public class SpinToColor extends CommandBase {
         //currentColor = ((colorSensor.getColor().equals("Green") && previousColor.equals("Blue")) ? "Blue" : colorSensor.getColor());
         updateColor();
 
-        SmartDashboard.putString("currentColor", currentColor);
-        SmartDashboard.putString("previousColor", previousColor);
-        SmartDashboard.putNumber("colorCount", colorCount);
-        SmartDashboard.putString("targetColor", targetColor);
+        // SmartDashboard.putString("currentColor", currentColor);
+        // SmartDashboard.putString("previousColor", previousColor);
+        // SmartDashboard.putNumber("colorCount", colorCount);
+        // SmartDashboard.putString("targetColor", targetColor);
 
         previousColor = currentColor;
     

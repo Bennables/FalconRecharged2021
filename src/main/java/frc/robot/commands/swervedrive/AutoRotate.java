@@ -7,7 +7,7 @@
 
 package frc.robot.commands.swervedrive;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.// Smartdashboard.// Smartdashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 
@@ -41,9 +41,9 @@ public class AutoRotate extends CommandBase {
   public void execute() {
     currAngle = swerveDriveSubsystem.getGyroAngle();
     swerveDriveSubsystem.holonomicDrive(0, 0, Math.signum(angle)*-.2); //forward, strafe, rotation, why -.2
-    SmartDashboard.putNumber("init angle", initAngle);
-    SmartDashboard.putNumber("curr angle", (currAngle));
-    SmartDashboard.putNumber("target angle", (targetAngle));
+    // Smartdashboard.putNumber("init angle", initAngle);
+    // Smartdashboard.putNumber("curr angle", (currAngle));
+    // Smartdashboard.putNumber("target angle", (targetAngle));
   }
 
   // Called once the command ends or is interrupted.

@@ -7,29 +7,25 @@
 
 package frc.robot.commands.swervedrive;
 
-import com.playingwithfusion.TimeOfFlight;
-
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.TimeOfFlightRange;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class GetInchesTimeOfFlight extends InstantCommand {
-  private TimeOfFlightRange detect;
-
-  public GetInchesTimeOfFlight() {
-    // SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-    detect = new TimeOfFlightRange();
-    
+public class PrintTest extends InstantCommand {
+  NetworkTable shooterLL;  
+  public PrintTest() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putNumber("Time of Flight:", detect.getDistanceSensor());
+    SmartDashboard.putString("Test", "*******TESTING SHUFFLEBOARD BUTTON**********");
 
+    // int toggle = shooterLL.getEntry("ledMode");
+    shooterLL.getEntry("ledMode").setNumber(1);
   }
 }

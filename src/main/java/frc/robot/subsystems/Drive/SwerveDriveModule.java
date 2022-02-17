@@ -170,7 +170,7 @@ public class SwerveDriveModule extends SubsystemBase {
 
         targetAngle %= 360;
 
-        SmartDashboard.putNumber("Module Target Angle " + mModuleNumber, targetAngle % 360);
+       // SmartDashboard.putNumber("Module Target Angle " + mModuleNumber, targetAngle % 360);
 
         targetAngle += mZeroOffset;
 
@@ -253,6 +253,6 @@ public class SwerveDriveModule extends SubsystemBase {
     }
 
     public void printTick() {
-        SmartDashboard.putNumber("Ticks" + mModuleNumber, mDriveMotor.getSelectedSensorPosition());
+       // SmartDashboard.putNumber("Ticks" + mModuleNumber, mDriveMotor.getSelectedSensorPosition());
     }
 }

@@ -43,12 +43,12 @@ public class ConveyorTalon extends SubsystemBase {
   }
 
   private void printStuff() {
-    SmartDashboard.putBoolean("Sensor State", getStatus());
-    SmartDashboard.putNumber("Ticks", indexer.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Distance", getDistance());
-    SmartDashboard.putBoolean("Ignored", isIgnored());
-    SmartDashboard.putNumber("Conveyor Current", indexer.getStatorCurrent());
-    SmartDashboard.putBoolean("Has Seen", hasSeen);
+   // SmartDashboard.putBoolean("Sensor State", getStatus());
+   // SmartDashboard.putNumber("Ticks", indexer.getSelectedSensorPosition());
+   // SmartDashboard.putNumber("Distance", getDistance());
+   // SmartDashboard.putBoolean("Ignored", isIgnored());
+   // SmartDashboard.putNumber("Conveyor Current", indexer.getStatorCurrent());
+   // SmartDashboard.putBoolean("Has Seen", hasSeen);
   }
 
   // checks if there is a powercell in the conveyor within 5.3 inches from the sensor

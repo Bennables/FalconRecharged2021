@@ -17,9 +17,9 @@ public class AlignAndMoveToLimelight extends CommandBase {
   /**
    * Creates a new AlignAndMoveToLimelight.
    */
-  LimelightPortal limelight;
-  SwerveDriveSubsystem swervedrive;
-  double targetDistance;
+  private LimelightPortal limelight;
+  private SwerveDriveSubsystem swervedrive;
+  private double targetDistance;
 
   /* distance and angle constants*/
 

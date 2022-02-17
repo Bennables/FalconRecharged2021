@@ -21,7 +21,7 @@ import frc.robot.commands.AutoPaths.AutoPath1;
 import frc.robot.commands.controlpanel.SpinToColor;
 import frc.robot.commands.controlpanel.SpinToMidColor;
 //import frc.robot.commands.controlpanel.SpinnerCommand;
-import frc.robot.commands.conveyor.ConveyorSpeed;
+// import frc.robot.commands.conveyor.ConveyorSpeed;
 import frc.robot.commands.intake.IntakeSpeed;
 import frc.robot.commands.intake.ToggleIntake;
 import frc.robot.commands.swervedrive.HolonomicDriveCommand;
@@ -34,7 +34,7 @@ import frc.robot.subsystems.Drive.SwerveDriveModule;
 import frc.robot.subsystems.Drive.SwerveDriveSubsystem;
 // import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Shooter;
+// import frc.robot.subsystems.Shooter;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -53,7 +53,7 @@ public class DaphneOneContainer {
   private final Limelight limelight;
   private final ConveyorTalon conveyor;
   // private final Intake intake;
-  private final Shooter shooter;
+  // private final Shooter shooter;
   private final Compressor compressor;
   // private final ClimberTalon climber;
 
@@ -73,7 +73,7 @@ public class DaphneOneContainer {
     limelight = new Limelight(swerveDriveSubsystem);
     conveyor = new ConveyorTalon();
     // intake = new Intake();
-    shooter = new Shooter();
+    // shooter = new Shooter();
     compressor = new Compressor();
     // climber = new ClimberTalon();
 

@@ -8,7 +8,7 @@ import com.revrobotics.ControlType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.// SmartDashboard.// SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,9 +26,9 @@ public class ColorPanelSpinner extends SubsystemBase {
 
     public ColorPanelSpinner() {
         //moto1 = new TalonSRX(Constants.SPINNER_TALON);
-         SmartDashboard.putNumber("PID_P", mPIDControllerP);
-         SmartDashboard.putNumber("PID_I", mPIDControllerI);
-         SmartDashboard.putNumber("PID_D", mPIDControllerD);
+         // SmartDashboard.putNumber("PID_P", mPIDControllerP);
+         // SmartDashboard.putNumber("PID_I", mPIDControllerI);
+         // SmartDashboard.putNumber("PID_D", mPIDControllerD);
 
         moto1 = new CANSparkMax(Constants.SPINNER_SPARK, MotorType.kBrushless);
         //encoder = new CANEncoder(moto1, EncoderType.kQuadrature,8192); //for throughbore encoder
@@ -82,7 +82,7 @@ public class ColorPanelSpinner extends SubsystemBase {
          * inchesToEncoderTicks(distance);
          */
         double ticks = degrees / 360.0;
-        SmartDashboard.putNumber("Module Ticks ", ticks);
+        // SmartDashboard.putNumber("Module Ticks ", ticks);
         
     }
 
@@ -91,16 +91,16 @@ public class ColorPanelSpinner extends SubsystemBase {
     }
 
     public void printPID() {
-        SmartDashboard.putNumber("PID_P", mPIDControllerP);
-        SmartDashboard.putNumber("PID_I", mPIDControllerI);
-        SmartDashboard.putNumber("PID_D", mPIDControllerD);
+        // SmartDashboard.putNumber("PID_P", mPIDControllerP);
+        // SmartDashboard.putNumber("PID_I", mPIDControllerI);
+        // SmartDashboard.putNumber("PID_D", mPIDControllerD);
     }
 
     public void setPID() {
         double defaultValue = 0.2;
-        mPIDController.setP(SmartDashboard.getNumber("PID_P", defaultValue));
-        mPIDController.setI(SmartDashboard.getNumber("PID_I", defaultValue));
-        mPIDController.setD(SmartDashboard.getNumber("PID_D", defaultValue));
+        // mPIDController.setP(// SmartDashboard.getNumber("PID_P", defaultValue));
+        // mPIDController.setI(// SmartDashboard.getNumber("PID_I", defaultValue));
+        // mPIDController.setD(// SmartDashboard.getNumber("PID_D", defaultValue));
 
         printPID();
 
@@ -111,7 +111,7 @@ public class ColorPanelSpinner extends SubsystemBase {
     }
 
     public void printPosition() {
-        SmartDashboard.putNumber("Spinner Pos", getPosition());
+        // SmartDashboard.putNumber("Spinner Pos", getPosition());
     }
 
     public void resetEncoder() {
@@ -139,9 +139,9 @@ public class ColorPanelSpinner extends SubsystemBase {
     @Override
     public void periodic() {
       printPosition();
-      SmartDashboard.putNumber("Current", moto1.getOutputCurrent());
-      SmartDashboard.putNumber("Temperature", moto1.getMotorTemperature());
-      SmartDashboard.putNumber("Voltage",moto1.getBusVoltage());
+      // SmartDashboard.putNumber("Current", moto1.getOutputCurrent());
+      // SmartDashboard.putNumber("Temperature", moto1.getMotorTemperature());
+      // SmartDashboard.putNumber("Voltage",moto1.getBusVoltage());
       //printPID();
     }
 }

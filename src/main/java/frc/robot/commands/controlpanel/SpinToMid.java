@@ -12,7 +12,7 @@ import frc.robot.Constants;
 import java.util.HashMap;
 import java.util.Map;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.// SmartDashboard.// SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Color.ColorPanelSpinner;
 import frc.robot.subsystems.Color.ColorSensor;
@@ -97,7 +97,7 @@ public class SpinToMid extends CommandBase {
     currentColor = colorSensor.getColor();
     startColor = gameData;
 
-    SmartDashboard.putString("mid target color", startColor);
+    // // SmartDashboard.putString("mid target color", startColor);
 
 
     //setting color and indexes going forward and back
@@ -114,8 +114,8 @@ public class SpinToMid extends CommandBase {
       
     }
 
-    SmartDashboard.putString("previousColor", prevColor);
-    SmartDashboard.putString("expColor", expectedColor);
+    // SmartDashboard.putString("previousColor", prevColor);
+    // SmartDashboard.putString("expColor", expectedColor);
     if(gameData.equals("Red") || gameData.equals("Blue")) {
       blueOrRed();
     }
@@ -133,7 +133,7 @@ public class SpinToMid extends CommandBase {
     if (!detected.equals(wrongColor)) {
       currentColor = detected;
     }
-    SmartDashboard.putString("currentColor", currentColor);
+    // SmartDashboard.putString("currentColor", currentColor);
     
   }
 
@@ -147,7 +147,7 @@ public class SpinToMid extends CommandBase {
     colorPanelSpinner.spin(0);
     forwardPos = colorPanelSpinner.getPosition();
     colorPanelSpinner.printPosition();
-    SmartDashboard.putNumber("forward pos", forwardPos);
+    // SmartDashboard.putNumber("forward pos", forwardPos);
     while(!currentColor.equals(gameData)) { //"Red"
       colorPanelSpinner.spin(-Constants.SPINNER_SPEED);
       updateColor();
@@ -162,28 +162,28 @@ public class SpinToMid extends CommandBase {
     finalPos = colorPanelSpinner.getPosition();
     colorPanelSpinner.printPosition();
     segmentLength = Math.abs(forwardPos - finalPos);
-    SmartDashboard.putNumber("backward pos", finalPos);
+    // SmartDashboard.putNumber("backward pos", finalPos);
 
     //double midPos = segmentLength / 3 + (segmentLength / 3) * Constants.SPINNER_POSITION_PERCENT;
     double midPos = segmentLength * Constants.SPINNER_POSITION_PERCENT;
     targetPos = finalPos + midPos;
 
     //moves to middle
-    SmartDashboard.putNumber("Target pos", targetPos);
-    SmartDashboard.putNumber("Segment length", segmentLength);
+    // SmartDashboard.putNumber("Target pos", targetPos);
+    // SmartDashboard.putNumber("Segment length", segmentLength);
     colorPanelSpinner.setPosition(targetPos);
     colorPanelSpinner.printPosition();
 
     updateColor();
-    SmartDashboard.putString("currentColor", currentColor);
+    // SmartDashboard.putString("currentColor", currentColor);
   }
 
 
 //moves to middle of color segment
   public void findMid() {
-    SmartDashboard.putNumber("init pos", colorPanelSpinner.getPosition());
+    // SmartDashboard.putNumber("init pos", colorPanelSpinner.getPosition());
     updateColor();
-    SmartDashboard.putString("currentColor", currentColor);
+    // SmartDashboard.putString("currentColor", currentColor);
 
     //detects first color change
     while (currentColor!= expectedColor) {
@@ -195,11 +195,11 @@ public class SpinToMid extends CommandBase {
     colorPanelSpinner.spin(0);
     forwardPos = colorPanelSpinner.getPosition();
     colorPanelSpinner.printPosition();
-    SmartDashboard.putNumber("forward pos", forwardPos);
+    // SmartDashboard.putNumber("forward pos", forwardPos);
     
     //detects next color change spinning back
     while (currentColor != prevColor) {
-      SmartDashboard.putString("currentColor", currentColor);
+      // SmartDashboard.putString("currentColor", currentColor);
       colorPanelSpinner.spin(-Constants.SPINNER_SPEED);
       updateColor();
       colorPanelSpinner.printPosition();
@@ -210,19 +210,19 @@ public class SpinToMid extends CommandBase {
     finalPos = colorPanelSpinner.getPosition();
     colorPanelSpinner.printPosition();
     segmentLength = Math.abs(forwardPos - finalPos);
-    SmartDashboard.putNumber("backward pos", finalPos);
+    // SmartDashboard.putNumber("backward pos", finalPos);
 
     double midPos = segmentLength * Constants.SPINNER_POSITION_PERCENT;
     targetPos = finalPos + midPos;
 
     //moves to middle
-    SmartDashboard.putNumber("Target pos", targetPos);
-    SmartDashboard.putNumber("Segment length", segmentLength);
+    // SmartDashboard.putNumber("Target pos", targetPos);
+    // SmartDashboard.putNumber("Segment length", segmentLength);
     colorPanelSpinner.setPosition(targetPos);
     colorPanelSpinner.printPosition();
 
     updateColor();
-    SmartDashboard.putString("currentColor", currentColor);
+    // SmartDashboard.putString("currentColor", currentColor);
   }
 
   // Called every time the scheduler runs while the command is scheduled. v b-day = 3/6 hello  //viv bday = 3/6

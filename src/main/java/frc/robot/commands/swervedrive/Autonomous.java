@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.// SmartDashboard.// SmartDashboard;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -144,7 +144,7 @@ public class Autonomous extends CommandBase {
       
     }
     initGyro = firstGyroAngle;
-    SmartDashboard.putNumber("Init Gyro", initGyro);
+    // SmartDashboard.putNumber("Init Gyro", initGyro);
 
   }
 
@@ -159,9 +159,9 @@ public class Autonomous extends CommandBase {
       new SwerveModuleState(10*drivetrain.getSwerveModule(1).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(1).getCurrentAngle()-initPos[1]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(2).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(2).getCurrentAngle()-initPos[2]))),
       new SwerveModuleState(10*drivetrain.getSwerveModule(3).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT, new Rotation2d(Math.toRadians(drivetrain.getSwerveModule(3).getCurrentAngle()-initPos[3]))));
-    SmartDashboard.putNumber("gyro - init", drivetrain.getGyroAngle()-initGyro);
+    // SmartDashboard.putNumber("gyro - init", drivetrain.getGyroAngle()-initGyro);
     Trajectory.State goal = trajectory.sample(time.get()); // sample the trajectory at 3.4 seconds from the beginning
-    SmartDashboard.putString("current Goal", goal.poseMeters.toString());
+    // SmartDashboard.putString("current Goal", goal.poseMeters.toString());
     ChassisSpeeds adjustedSpeeds = controller.calculate(odometry.getPoseMeters(), goal);
     SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(adjustedSpeeds);
 
@@ -177,18 +177,18 @@ public class Autonomous extends CommandBase {
     drivetrain.getSwerveModule(3).setMeterSpeed(moduleStates[3].speedMetersPerSecond);
     drivetrain.getSwerveModule(3).setTargetAngle(moduleStates[3].angle.getDegrees()+initPos[3], isAuto);
 
-    SmartDashboard.putNumber("Speed 0", 10*drivetrain.getSwerveModule(0).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT);
-    SmartDashboard.putNumber("Angle 0 Expected", moduleStates[0].angle.getDegrees()+initPos[0]);
-    SmartDashboard.putNumber("Speed 1", moduleStates[1].speedMetersPerSecond);
-    SmartDashboard.putNumber("Angle 1 Expected", moduleStates[1].angle.getDegrees()+initPos[1]);
-    SmartDashboard.putNumber("Speed 2", moduleStates[2].speedMetersPerSecond);
-    SmartDashboard.putNumber("Angle 2 Expected", moduleStates[2].angle.getDegrees()+initPos[2]);
-    SmartDashboard.putNumber("Speed 3", moduleStates[3].speedMetersPerSecond);
-    SmartDashboard.putNumber("Angle 3 Expected", moduleStates[3].angle.getDegrees()+initPos[3]);
-    SmartDashboard.putNumber("Angle 0 Actual", drivetrain.getSwerveModule(0).getCurrentAngle());
-    SmartDashboard.putNumber("Angle 1 Actual", drivetrain.getSwerveModule(1).getCurrentAngle());
-    SmartDashboard.putNumber("Angle 2 Actual", drivetrain.getSwerveModule(2).getCurrentAngle());
-    SmartDashboard.putNumber("Angle 3 Actual", drivetrain.getSwerveModule(3).getCurrentAngle());
+    // SmartDashboard.putNumber("Speed 0", 10*drivetrain.getSwerveModule(0).getDriveMotor().getSelectedSensorVelocity()*SPEEDCONSTANT);
+    // SmartDashboard.putNumber("Angle 0 Expected", moduleStates[0].angle.getDegrees()+initPos[0]);
+    // SmartDashboard.putNumber("Speed 1", moduleStates[1].speedMetersPerSecond);
+    // SmartDashboard.putNumber("Angle 1 Expected", moduleStates[1].angle.getDegrees()+initPos[1]);
+    // SmartDashboard.putNumber("Speed 2", moduleStates[2].speedMetersPerSecond);
+    // SmartDashboard.putNumber("Angle 2 Expected", moduleStates[2].angle.getDegrees()+initPos[2]);
+    // SmartDashboard.putNumber("Speed 3", moduleStates[3].speedMetersPerSecond);
+    // SmartDashboard.putNumber("Angle 3 Expected", moduleStates[3].angle.getDegrees()+initPos[3]);
+    // SmartDashboard.putNumber("Angle 0 Actual", drivetrain.getSwerveModule(0).getCurrentAngle());
+    // SmartDashboard.putNumber("Angle 1 Actual", drivetrain.getSwerveModule(1).getCurrentAngle());
+    // SmartDashboard.putNumber("Angle 2 Actual", drivetrain.getSwerveModule(2).getCurrentAngle());
+    // SmartDashboard.putNumber("Angle 3 Actual", drivetrain.getSwerveModule(3).getCurrentAngle());
   }
 
   // Called once the command ends or is interrupted.
@@ -216,11 +216,11 @@ public class Autonomous extends CommandBase {
     Pose2d tarPos = trajectory.getStates().get(trajectory.getStates().size()-1).poseMeters;
     double posDif = currPos.getTranslation().getDistance(tarPos.getTranslation());
     double rotDif = Math.abs((currPos.getRotation().minus(tarPos.getRotation())).getDegrees());
-    SmartDashboard.putString("StartPos", trajectory.getStates().get(0).poseMeters.toString());
-    SmartDashboard.putString("CurPos", currPos.toString());
-    SmartDashboard.putString("tarPos", tarPos.toString());
-    SmartDashboard.putNumber("posDif", posDif);
-    SmartDashboard.putNumber("rotDif", rotDif);
+    // SmartDashboard.putString("StartPos", trajectory.getStates().get(0).poseMeters.toString());
+    // SmartDashboard.putString("CurPos", currPos.toString());
+    // SmartDashboard.putString("tarPos", tarPos.toString());
+    // SmartDashboard.putNumber("posDif", posDif);
+    // SmartDashboard.putNumber("rotDif", rotDif);
 
     return trajectory.getTotalTimeSeconds() < time.get(); // review -Riley "Change once we account for slip.""
   }
